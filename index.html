@@ -70,14 +70,10 @@ body{
   z-index:5;
 }
 
-.hero-inner{
-  max-width:900px;
-}
+.hero-inner{max-width:900px}
 
 /* ================= HERO SLIDER ================= */
-.hero-slider{
-  overflow:hidden;
-}
+.hero-slider{overflow:hidden}
 
 .hero-track{
   display:flex;
@@ -205,13 +201,8 @@ h2{
   transform:scale(1.05);
   box-shadow:0 30px 60px rgba(0,0,0,.5);
 }
-/* ================= PORTFOLIO ================= */
-#portfolio{
-  max-width:1200px;
-  margin:auto;
-  padding:110px 20px;
-}
 
+/* ================= PORTFOLIO ================= */
 .portfolio-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -225,24 +216,24 @@ h2{
   padding:45px;
   border-radius:26px;
   border:1px solid #1e293b;
-  transition:transform .4s ease, box-shadow .4s ease;
-  transform-style:preserve-3d;
+  opacity:0;
+  transform:translateY(60px) scale(.95);
+  transition:
+    opacity .9s ease,
+    transform .9s cubic-bezier(.16,1,.3,1),
+    box-shadow .4s ease;
 }
 
-.portfolio-card:hover{
-  transform:translateY(-12px) rotateX(2deg) rotateY(-2deg);
-  box-shadow:0 45px 90px rgba(0,0,0,.6);
+.portfolio-card.show{
+  opacity:1;
+  transform:translateY(0) scale(1);
 }
 
-.portfolio-card h3{
-  margin-bottom:15px;
-  color:#38bdf8;
-}
-
-.portfolio-card p{
-  color:#c7d2fe;
-  margin-bottom:25px;
-  font-size:1.05rem;
+@media (hover:hover){
+  .portfolio-card:hover{
+    transform:translateY(-14px) rotateX(4deg) rotateY(-4deg);
+    box-shadow:0 55px 110px rgba(0,0,0,.65);
+  }
 }
 
 .portfolio-badge{
@@ -255,17 +246,7 @@ h2{
   border-radius:14px;
   font-size:.75rem;
   font-weight:600;
-}
-
-.portfolio-link{
-  color:#93c5fd;
-  font-weight:600;
-  text-decoration:none;
-  transition:.3s;
-}
-
-.portfolio-link:hover{
-  color:var(--green);
+  box-shadow:0 0 20px rgba(34,197,94,.35);
 }
 
 /* ================= CTA ================= */
@@ -291,12 +272,6 @@ footer{
   gap:45px;
 }
 
-footer h4{color:#60a5fa;margin-bottom:15px}
-
-footer ul{list-style:none}
-
-footer li{color:var(--muted);margin-bottom:8px}
-
 .footer-bottom{
   text-align:center;
   padding:20px;
@@ -317,148 +292,41 @@ footer li{color:var(--muted);margin-bottom:8px}
   <div class="hero-content">
     <div class="hero-inner">
 
-      <!-- SLIDER -->
       <div class="hero-slider">
         <div class="hero-track" id="heroTrack">
-
           <div class="hero-slide">
-            <h1>
-              Software & Hardware<br>
-              <span class="typing" id="typing"></span>
-            </h1>
+            <h1>Software & Hardware<br><span class="typing" id="typing"></span></h1>
             <p>Soluciones tecnológicas diseñadas para crecer tu negocio.</p>
-            <a class="btn" href="https://wa.me/521XXXXXXXXXX" target="_blank">Cotizar por WhatsApp</a>
+            <a class="btn" href="#">Cotizar ahora</a>
           </div>
-
           <div class="hero-slide">
             <h1>Automatización Inteligente</h1>
-            <p>Reduce costos y errores con sistemas diseñados a tu medida.</p>
-            <a class="btn" href="https://wa.me/521XXXXXXXXXX" target="_blank">Solicitar Asesoría</a>
+            <p>Reduce costos y errores con sistemas a medida.</p>
+            <a class="btn" href="#">Solicitar asesoría</a>
           </div>
-
-          <div class="hero-slide">
-            <h1>Electrónica & IoT</h1>
-            <p>Integra hardware, software y datos en una sola solución.</p>
-            <a class="btn" href="https://wa.me/521XXXXXXXXXX" target="_blank">Hablar con Experto</a>
-          </div>
-
         </div>
       </div>
 
       <div class="hero-dots" id="heroDots"></div>
-
     </div>
   </div>
 </div>
 
-<!-- SERVICIOS -->
 <section>
-  <h2>Qué Desarrollamos</h2>
-  <div class="grid">
-    <div class="card"><h3>💻 Software</h3><p>Sistemas web, APIs y automatización.</p></div>
-    <div class="card"><h3>🔌 Hardware</h3><p>Electrónica, IoT y control.</p></div>
-    <div class="card"><h3>⚙️ Integración</h3><p>Soluciones completas extremo a extremo.</p></div>
-  </div>
-</section>
-
-<!-- PROCESO -->
-<section>
-  <h2>Nuestro Proceso</h2>
-  <div class="steps">
-    <div class="step"><span>1️⃣</span>Análisis Técnico</div>
-    <div class="step"><span>2️⃣</span>Diseño de Solución</div>
-    <div class="step"><span>3️⃣</span>Desarrollo & Pruebas</div>
-    <div class="step"><span>4️⃣</span>Implementación Final</div>
-  </div>
-</section>
-<!-- PORTAFOLIO -->
-<section id="portfolio">
-  <h2>Portafolio de Proyectos</h2>
-
+  <h2>Portafolio</h2>
   <div class="portfolio-grid">
-
-    <div class="portfolio-card">
-      <div class="portfolio-badge">Software</div>
-      <h3>Sistema de Automatización Empresarial</h3>
-      <p>
-        Plataforma web para control de procesos, reportes en tiempo real
-        e integración con hardware.
-      </p>
-      <a href="#" class="portfolio-link">Ver detalles →</a>
-    </div>
-
-    <div class="portfolio-card">
-      <div class="portfolio-badge">Hardware / IoT</div>
-      <h3>Control Electrónico Industrial</h3>
-      <p>
-        Diseño de electrónica, firmware y monitoreo remoto
-        para equipos industriales.
-      </p>
-      <a href="#" class="portfolio-link">Ver detalles →</a>
-    </div>
-
-    <div class="portfolio-card">
-      <div class="portfolio-badge">Automatización</div>
-      <h3>Bot de Automatización Operativa</h3>
-      <p>
-        Automatización de tareas repetitivas, integración con WhatsApp
-        y sistemas internos.
-      </p>
-      <a href="#" class="portfolio-link">Ver detalles →</a>
-    </div>
-
-    <div class="portfolio-card">
-      <div class="portfolio-badge">Integración</div>
-      <h3>Solución Software + Hardware</h3>
-      <p>
-        Integración completa de sensores, backend y dashboard
-        para toma de decisiones.
-      </p>
-      <a href="#" class="portfolio-link">Ver detalles →</a>
-    </div>
-
+    <div class="portfolio-card"><div class="portfolio-badge">Software</div><h3>Plataforma Web</h3></div>
+    <div class="portfolio-card"><div class="portfolio-badge">IoT</div><h3>Control Electrónico</h3></div>
+    <div class="portfolio-card"><div class="portfolio-badge">Automatización</div><h3>Bot Operativo</h3></div>
   </div>
 </section>
 
-<!-- CTA -->
-<div class="cta">
-  <h2>¿Listo para iniciar tu proyecto?</h2>
-  <p>Asesoría inicial sin costo</p>
-  <a class="btn" href="https://wa.me/521XXXXXXXXXX" target="_blank">Hablar ahora</a>
-</div>
-
-<!-- FOOTER -->
 <footer>
-  <div class="footer-container">
-    <div>
-      <h4>Servicios</h4>
-      <ul>
-        <li>Desarrollo de Software</li>
-        <li>Electrónica & Hardware</li>
-        <li>Automatización</li>
-      </ul>
-    </div>
-    <div>
-      <h4>Contacto</h4>
-      <ul>
-        <li>WhatsApp</li>
-        <li>Email</li>
-        <li>Consultoría</li>
-      </ul>
-    </div>
-    <div>
-      <h4>Marca</h4>
-      <ul>
-        <li>Desarrollo Tecnológico</li>
-        <li>© 2026</li>
-      </ul>
-    </div>
-  </div>
   <div class="footer-bottom">© 2026 Desarrollo Tecnológico</div>
 </footer>
 
 <script>
-/* HERO SLIDER */
+/* Slider */
 const track=document.getElementById("heroTrack");
 const slides=document.querySelectorAll(".hero-slide");
 const dots=document.getElementById("heroDots");
@@ -478,35 +346,30 @@ function go(i){
   dotEls.forEach(d=>d.classList.remove("active"));
   dotEls[i].classList.add("active");
 }
-
 setInterval(()=>go((index+1)%slides.length),6000);
 
-/* PARALLAX */
-window.addEventListener("scroll",()=>{
-  const y=window.scrollY;
-  document.querySelector(".layer.bg").style.transform=`translateY(${y*.15}px)`;
-  document.querySelector(".layer.circuits").style.transform=`translateY(${y*.25}px)`;
-  document.querySelector(".layer.glow").style.transform=`translateY(${y*.35}px)`;
-});
-
-/* TYPING EFFECT */
-const words=[
-  "a Medida",
-  "Inteligente",
-  "Escalable",
-  "de Alto Rendimiento"
-];
-
-let w=0, c=0, del=false;
+/* Typing */
+const words=["a Medida","Escalable","Inteligente"];
+let w=0,c=0,del=false;
 const el=document.getElementById("typing");
-
-function type(){
+(function type(){
   el.textContent=words[w].slice(0,c);
   if(!del && c++===words[w].length+10) del=true;
   if(del && c--===0){del=false;w=(w+1)%words.length;}
   setTimeout(type,del?60:120);
-}
-type();
+})();
+
+/* Portfolio reveal */
+const cards=document.querySelectorAll('.portfolio-card');
+const io=new IntersectionObserver(e=>{
+  e.forEach(x=>{
+    if(x.isIntersecting){
+      x.target.classList.add('show');
+      io.unobserve(x.target);
+    }
+  });
+},{threshold:.2});
+cards.forEach(c=>io.observe(c));
 </script>
 
 </body>
