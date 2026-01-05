@@ -7,7 +7,6 @@
 <meta name="description" content="Desarrollo profesional de software y hardware a medida. Automatización, electrónica e integración tecnológica.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Open Graph -->
 <meta property="og:title" content="Desarrollo Tecnológico Profesional">
 <meta property="og:description" content="Soluciones de software y hardware a medida.">
 <meta property="og:image" content="https://jossh71981-sudo.github.io/og-image.jpg">
@@ -19,7 +18,6 @@
   --panel:#0f172a;
   --text:#e5e7eb;
   --muted:#94a3b8;
-  --blue:#3b82f6;
   --green:#22c55e;
 }
 
@@ -29,15 +27,13 @@ body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   background:var(--bg);
   color:var(--text);
-  line-height:1.6;
   overflow-x:hidden;
 }
 
-/* ================= HERO PARALLAX ================= */
+/* ================= HERO ================= */
 .hero{
   position:relative;
   height:100vh;
-  perspective:1200px;
   overflow:hidden;
 }
 
@@ -52,7 +48,7 @@ body{
 
 .layer.circuits{
   background:url("https://www.transparenttextures.com/patterns/circuit-board.png");
-  opacity:.07;
+  opacity:.06;
 }
 
 .layer.glow{
@@ -61,6 +57,7 @@ body{
     radial-gradient(circle at 70% 40%,#22c55e 0%,transparent 35%);
 }
 
+/* ================= HERO CONTENT ================= */
 .hero-content{
   position:relative;
   height:100%;
@@ -69,24 +66,41 @@ body{
   justify-content:center;
   text-align:center;
   padding:20px;
+  z-index:5;
 }
 
 .hero-inner{
   max-width:900px;
-  animation:fadeUp 1.2s ease forwards;
 }
 
-.hero h1{
+/* ================= HERO SLIDER ================= */
+.hero-slider{
+  position:relative;
+  overflow:hidden;
+}
+
+.hero-track{
+  display:flex;
+  transition:transform .8s cubic-bezier(.4,0,.2,1);
+}
+
+.hero-slide{
+  min-width:100%;
+  padding:40px 20px;
+}
+
+.hero-slide h1{
   font-size:3.2rem;
   margin-bottom:20px;
 }
 
-.hero p{
+.hero-slide p{
   font-size:1.3rem;
   margin-bottom:35px;
   color:#dbeafe;
 }
 
+/* ================= BUTTON ================= */
 .btn{
   display:inline-block;
   background:var(--green);
@@ -96,7 +110,7 @@ body{
   font-weight:700;
   font-size:1.1rem;
   text-decoration:none;
-  transition:transform .3s, box-shadow .3s;
+  transition:.3s;
 }
 
 .btn:hover{
@@ -104,69 +118,29 @@ body{
   box-shadow:0 30px 70px rgba(0,0,0,.45);
 }
 
-/* ================= SLIDER ================= */
-.slider-section{
-  padding:120px 0;
-  background:linear-gradient(180deg,#020617,#0f172a);
-}
-
-.slider-wrapper{
-  max-width:1200px;
-  margin:auto;
-  padding:0 20px;
-}
-
-.slider{
-  display:flex;
-  gap:30px;
-  overflow-x:auto;
-  scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;
-}
-
-.slider::-webkit-scrollbar{display:none}
-
-.slide{
-  min-width:320px;
-  background:var(--panel);
-  padding:50px;
-  border-radius:28px;
-  border:1px solid #1e293b;
-  scroll-snap-align:center;
-  transition:all .4s ease;
-}
-
-.slide:hover{
-  transform:translateY(-10px) scale(1.03);
-  box-shadow:0 40px 90px rgba(0,0,0,.6);
-}
-
-.slide h3{
-  margin-bottom:15px;
-  color:#38bdf8;
-}
-
-.dots{
+/* ================= DOTS ================= */
+.hero-dots{
   display:flex;
   justify-content:center;
   gap:12px;
-  margin-top:35px;
+  margin-top:25px;
 }
 
-.dot{
+.hero-dot{
   width:12px;
   height:12px;
   border-radius:50%;
   background:#334155;
   cursor:pointer;
+  transition:.3s;
 }
 
-.dot.active{
+.hero-dot.active{
   background:#22c55e;
   transform:scale(1.3);
 }
 
-/* ================= SECCIONES ================= */
+/* ================= SECTIONS ================= */
 section{
   max-width:1200px;
   margin:auto;
@@ -175,7 +149,7 @@ section{
 
 h2{
   text-align:center;
-  font-size:2.5rem;
+  font-size:2.4rem;
   margin-bottom:60px;
   color:#93c5fd;
 }
@@ -192,7 +166,7 @@ h2{
   padding:45px;
   border-radius:24px;
   border:1px solid #1e293b;
-  transition:all .4s;
+  transition:.4s;
 }
 
 .card:hover{
@@ -223,29 +197,17 @@ footer{
   gap:45px;
 }
 
-footer h4{
-  margin-bottom:15px;
-  color:#60a5fa;
-}
+footer h4{color:#60a5fa;margin-bottom:15px}
 
 footer ul{list-style:none}
 
-footer li{
-  margin-bottom:8px;
-  color:var(--muted);
-}
+footer li{color:var(--muted);margin-bottom:8px}
 
 .footer-bottom{
   text-align:center;
   padding:20px;
   font-size:.85rem;
   color:#64748b;
-}
-
-/* ================= ANIM ================= */
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(30px)}
-  to{opacity:1;transform:translateY(0)}
 }
 </style>
 </head>
@@ -260,34 +222,46 @@ footer li{
 
   <div class="hero-content">
     <div class="hero-inner">
-      <h1>Software & Hardware a Medida</h1>
-      <p>Soluciones tecnológicas para empresas modernas</p>
-      <a class="btn" href="https://wa.me/521XXXXXXXXXX" target="_blank">Cotizar por WhatsApp</a>
+
+      <!-- SLIDER -->
+      <div class="hero-slider">
+        <div class="hero-track" id="heroTrack">
+
+          <div class="hero-slide">
+            <h1>Software & Hardware a Medida</h1>
+            <p>Soluciones tecnológicas diseñadas para crecer tu negocio.</p>
+            <a class="btn" href="https://wa.me/521XXXXXXXXXX" target="_blank">Cotizar por WhatsApp</a>
+          </div>
+
+          <div class="hero-slide">
+            <h1>Automatización Inteligente</h1>
+            <p>Reduce costos y errores con sistemas a tu medida.</p>
+            <a class="btn" href="https://wa.me/521XXXXXXXXXX" target="_blank">Solicitar Asesoría</a>
+          </div>
+
+          <div class="hero-slide">
+            <h1>Electrónica & IoT</h1>
+            <p>Integra hardware, software y datos en una sola solución.</p>
+            <a class="btn" href="https://wa.me/521XXXXXXXXXX" target="_blank">Hablar con Experto</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- DOTS -->
+      <div class="hero-dots" id="heroDots"></div>
+
     </div>
   </div>
 </div>
-
-<!-- SLIDER -->
-<section class="slider-section">
-  <div class="slider-wrapper">
-    <h2>Soluciones Profesionales</h2>
-    <div class="slider" id="slider">
-      <div class="slide"><h3>💻 Software</h3><p>Sistemas, APIs y automatización.</p></div>
-      <div class="slide"><h3>🔌 Hardware</h3><p>Electrónica, IoT y control.</p></div>
-      <div class="slide"><h3>⚙️ Automatización</h3><p>Optimización de procesos.</p></div>
-      <div class="slide"><h3>📊 Integración</h3><p>Soluciones completas.</p></div>
-    </div>
-    <div class="dots" id="dots"></div>
-  </div>
-</section>
 
 <!-- SERVICIOS -->
 <section>
   <h2>Qué Desarrollamos</h2>
   <div class="grid">
     <div class="card"><h3>Software</h3><p>Web, backend y automatización.</p></div>
-    <div class="card"><h3>Hardware</h3><p>Diseño electrónico y prototipos.</p></div>
-    <div class="card"><h3>Integración</h3><p>Todo conectado.</p></div>
+    <div class="card"><h3>Hardware</h3><p>Electrónica e IoT.</p></div>
+    <div class="card"><h3>Integración</h3><p>Soluciones completas.</p></div>
   </div>
 </section>
 
@@ -329,28 +303,38 @@ footer li{
 </footer>
 
 <script>
-const slider=document.getElementById("slider");
-const slides=document.querySelectorAll(".slide");
-const dots=document.getElementById("dots");
+/* HERO SLIDER */
+const track=document.getElementById("heroTrack");
+const slides=document.querySelectorAll(".hero-slide");
+const dots=document.getElementById("heroDots");
 let index=0;
 
+/* create dots */
 slides.forEach((_,i)=>{
   const d=document.createElement("div");
-  d.className="dot"+(i==0?" active":"");
+  d.className="hero-dot"+(i===0?" active":"");
   d.onclick=()=>go(i);
   dots.appendChild(d);
 });
-
-const dotEls=document.querySelectorAll(".dot");
+const dotEls=document.querySelectorAll(".hero-dot");
 
 function go(i){
   index=i;
-  slider.scrollTo({left:slides[i].offsetLeft-slider.offsetLeft,behavior:"smooth"});
+  track.style.transform=`translateX(-${i*100}%)`;
   dotEls.forEach(d=>d.classList.remove("active"));
   dotEls[i].classList.add("active");
 }
 
+/* autoplay */
 setInterval(()=>go((index+1)%slides.length),5000);
+
+/* parallax scroll */
+window.addEventListener("scroll",()=>{
+  const y=window.scrollY;
+  document.querySelector(".layer.bg").style.transform=`translateY(${y*.15}px)`;
+  document.querySelector(".layer.circuits").style.transform=`translateY(${y*.25}px)`;
+  document.querySelector(".layer.glow").style.transform=`translateY(${y*.35}px)`;
+});
 </script>
 
 </body>
