@@ -2,17 +2,37 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Desarrollo Tecnológico Premium</title>
+<title>Desarrollo de Software y Hardware a Medida | Soluciones Tecnológicas</title>
 
-<meta name="description" content="Software y hardware a medida. Automatización, electrónica e integración tecnológica profesional.">
+<!-- SEO TÉCNICO -->
+<meta name="description" content="Desarrollo profesional de software y hardware a medida. Automatización, electrónica, IoT e integración tecnológica para empresas.">
+<meta name="keywords" content="desarrollo software, desarrollo hardware, automatización, electrónica, iot, sistemas a medida">
+<meta name="author" content="Desarrollo Tecnológico">
+<link rel="canonical" href="https://jossh71981-sudo.github.io/">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta property="og:title" content="Desarrollo Tecnológico Premium">
-<meta property="og:description" content="Soluciones profesionales software + hardware.">
+<!-- Open Graph -->
+<meta property="og:title" content="Desarrollo Tecnológico Profesional">
+<meta property="og:description" content="Software y hardware a medida para empresas y talleres.">
 <meta property="og:image" content="https://jossh71981-sudo.github.io/og-image.jpg">
 <meta property="og:url" content="https://jossh71981-sudo.github.io/">
+<meta property="og:type" content="website">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Desarrollo Tecnológico",
+  "url": "https://jossh71981-sudo.github.io/",
+  "description": "Desarrollo de software y hardware a medida.",
+  "sameAs": []
+}
+</script>
 
 <style>
+/* ================= BASE ================= */
 :root{
   --bg:#020617;
   --panel:#0f172a;
@@ -25,7 +45,6 @@
 *{margin:0;padding:0;box-sizing:border-box}
 
 html{
-  scroll-snap-type:y mandatory;
   scroll-behavior:smooth;
 }
 
@@ -36,8 +55,54 @@ body{
   overflow-x:hidden;
 }
 
-/* ===== SCROLL SNAP SECTIONS ===== */
-.snap{
+/* ================= PRELOADER ================= */
+#preloader{
+  position:fixed;
+  inset:0;
+  background:#020617;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
+.loader{
+  text-align:center;
+}
+
+.loader span{
+  display:block;
+  font-size:1.4rem;
+  margin-bottom:15px;
+}
+
+.bar{
+  width:220px;
+  height:4px;
+  background:#1e293b;
+  border-radius:4px;
+  overflow:hidden;
+}
+
+.bar::after{
+  content:"";
+  display:block;
+  height:100%;
+  width:0;
+  background:var(--green);
+  animation:load 1.8s ease forwards;
+}
+
+@keyframes load{
+  to{width:100%}
+}
+
+/* ================= MOMENTUM SCROLL ================= */
+.wrapper{
+  scroll-snap-type:y mandatory;
+}
+
+.section{
   height:100vh;
   scroll-snap-align:start;
   position:relative;
@@ -48,156 +113,129 @@ body{
   padding:20px;
 }
 
-/* ===== HERO VIDEO ===== */
-video.bg-video{
+/* ================= HERO (STICKY APPLE) ================= */
+.hero{
+  position:sticky;
+  top:0;
+}
+
+video.bg{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
-  z-index:-2;
   filter:brightness(.45);
+  z-index:-2;
 }
 
-.hero-overlay{
+.overlay{
   position:absolute;
   inset:0;
-  background:
-    radial-gradient(circle at 30% 30%,rgba(59,130,246,.25),transparent 40%),
-    linear-gradient(135deg,rgba(2,6,23,.9),rgba(2,6,23,.95));
+  background:linear-gradient(135deg,rgba(2,6,23,.9),rgba(2,6,23,.95));
   z-index:-1;
 }
 
-.hero-content{
-  max-width:900px;
-  animation:fadeUp 1.2s ease forwards;
-}
-
 .hero h1{
-  font-size:3.5rem;
+  font-size:3.6rem;
   margin-bottom:20px;
 }
 
 .hero p{
   font-size:1.3rem;
-  margin-bottom:40px;
   color:#dbeafe;
+  margin-bottom:35px;
 }
 
-/* ===== BUTTON MICROINTERACTION ===== */
+/* ================= BUTTON ================= */
 .btn{
-  position:relative;
   background:var(--green);
   color:#022c22;
-  padding:18px 50px;
+  padding:18px 48px;
   border-radius:22px;
   font-weight:700;
   font-size:1.1rem;
   text-decoration:none;
-  overflow:hidden;
-  transition:transform .2s ease;
+  transition:transform .15s ease;
 }
 
-.btn::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at center,rgba(255,255,255,.4),transparent 60%);
-  opacity:0;
-  transition:.4s;
-}
-
-.btn:hover::after{opacity:1}
 .btn:active{transform:scale(.96)}
 
-/* ===== CONTENT ===== */
-.section{
+/* ================= CONTENT ================= */
+.container{
   max-width:1200px;
   margin:auto;
-}
-
-h2{
-  font-size:2.6rem;
-  margin-bottom:60px;
-  color:#93c5fd;
 }
 
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:40px;
-  perspective:1200px;
 }
 
-/* ===== CARD MICROINTERACTION ===== */
 .card{
   background:var(--panel);
   padding:45px;
   border-radius:26px;
   border:1px solid #1e293b;
-  transform-style:preserve-3d;
-  transition:transform .15s ease, box-shadow .15s ease;
+  transition:transform .15s ease;
 }
 
-.card h3{
-  margin-bottom:15px;
-  color:#38bdf8;
-  transform:translateZ(35px);
-}
-
-/* ===== CTA ===== */
+/* ================= CTA ================= */
 .cta{
   background:linear-gradient(135deg,#22c55e,#16a34a);
   color:#022c22;
 }
 
-.cta h2{color:#022c22}
-
-/* ===== FOOTER ===== */
+/* ================= FOOTER ================= */
 footer{
   background:#020617;
   border-top:1px solid #1e293b;
 }
 
-.footer-container{
+.footer{
   max-width:1200px;
   margin:auto;
-  padding:80px 20px 40px;
+  padding:70px 20px 40px;
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:45px;
+  gap:40px;
 }
 
-footer h4{color:#60a5fa;margin-bottom:15px}
-footer li{list-style:none;color:var(--muted);margin-bottom:8px}
+.footer h4{color:#60a5fa;margin-bottom:15px}
+.footer li{list-style:none;color:var(--muted);margin-bottom:8px}
 
 .footer-bottom{
   text-align:center;
   padding:20px;
-  color:#64748b;
   font-size:.85rem;
-}
-
-/* ===== ANIM ===== */
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(30px)}
-  to{opacity:1;transform:translateY(0)}
+  color:#64748b;
 }
 </style>
 </head>
 
 <body>
 
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="loader">
+    <span>Desarrollo Tecnológico</span>
+    <div class="bar"></div>
+  </div>
+</div>
+
+<div class="wrapper">
+
 <!-- HERO -->
-<section class="snap hero">
-  <video class="bg-video" autoplay muted loop playsinline>
+<section class="section hero">
+  <video class="bg" autoplay muted loop playsinline preload="metadata">
     <source src="video-tech.mp4" type="video/mp4">
   </video>
-  <div class="hero-overlay"></div>
+  <div class="overlay"></div>
 
-  <div class="hero-content">
-    <h1>Software & Hardware Premium</h1>
-    <p>Soluciones tecnológicas diseñadas con precisión.</p>
+  <div>
+    <h1>Software & Hardware a Medida</h1>
+    <p>Ingeniería tecnológica con enfoque empresarial.</p>
     <a class="btn" href="https://wa.me/521XXXXXXXXXX" target="_blank">
       📲 Cotizar por WhatsApp
     </a>
@@ -205,19 +243,19 @@ footer li{list-style:none;color:var(--muted);margin-bottom:8px}
 </section>
 
 <!-- SERVICIOS -->
-<section class="snap">
-  <div class="section">
+<section class="section">
+  <div class="container">
     <h2>Qué Desarrollamos</h2>
     <div class="grid">
-      <div class="card"><h3>💻 Software</h3><p>Sistemas, APIs y automatización.</p></div>
-      <div class="card"><h3>🔌 Hardware</h3><p>Electrónica, IoT y control.</p></div>
-      <div class="card"><h3>⚙️ Integración</h3><p>Soluciones extremo a extremo.</p></div>
+      <div class="card">💻 Software empresarial</div>
+      <div class="card">🔌 Hardware & electrónica</div>
+      <div class="card">⚙️ Integración tecnológica</div>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="snap cta">
+<section class="section cta">
   <div>
     <h2>Inicia tu proyecto hoy</h2>
     <p>Asesoría inicial sin costo.</p>
@@ -227,9 +265,11 @@ footer li{list-style:none;color:var(--muted);margin-bottom:8px}
   </div>
 </section>
 
+</div>
+
 <!-- FOOTER -->
 <footer>
-  <div class="footer-container">
+  <div class="footer">
     <div>
       <h4>Servicios</h4>
       <ul>
@@ -239,36 +279,26 @@ footer li{list-style:none;color:var(--muted);margin-bottom:8px}
     <div>
       <h4>Contacto</h4>
       <ul>
-        <li>WhatsApp</li><li>Email</li><li>Consultoría</li>
+        <li>WhatsApp</li><li>Email</li>
       </ul>
     </div>
     <div>
       <h4>Marca</h4>
       <ul>
         <li>Desarrollo Tecnológico</li>
-        <li>Premium Solutions</li>
+        <li>© 2026</li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    © 2026 Desarrollo Tecnológico
+    Todos los derechos reservados
   </div>
 </footer>
 
 <script>
-/* ===== 3D CARD ===== */
-document.querySelectorAll(".card").forEach(card=>{
-  card.addEventListener("mousemove",e=>{
-    const r=card.getBoundingClientRect();
-    const x=e.clientX-r.left;
-    const y=e.clientY-r.top;
-    const rx=-(y-r.height/2)/18;
-    const ry=(x-r.width/2)/18;
-    card.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg)`;
-  });
-  card.addEventListener("mouseleave",()=>{
-    card.style.transform="rotateX(0) rotateY(0)";
-  });
+/* PRELOADER */
+window.addEventListener("load",()=>{
+  document.getElementById("preloader").style.display="none";
 });
 </script>
 
